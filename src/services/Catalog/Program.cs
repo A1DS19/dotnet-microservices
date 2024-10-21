@@ -1,6 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCarter();
+
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+
+builder
+    .Services.AddMarten(config =>
+    {
+        config.Connection(builder.Configuration.GetConnectionString("Database")!);
+    })
+    .UseLightweightSessions();
+
 var app = builder.Build();
 
-app.MapGet("/api/catalog", () => new { Name = "Catalog API", Version = "1.0" });
+app.MapCarter();
 
 app.Run();

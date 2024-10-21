@@ -1,0 +1,42 @@
+# Ignore .NET build outputs
+bin/
+obj/
+
+# Ignore user-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore build artifacts
+*.dll
+*.exe
+*.pdb
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.sln.iml
+
+# Ignore node_modules (if using Node.js for frontend)
+node_modules/
+
+# Ignore Docker-related files
+.dockerignore
+Dockerfile
+
+# Ignore environment variable files
+.env
+
+# Ignore coverage reports
+coverage/
+*.coverage
+*.coveragexml
