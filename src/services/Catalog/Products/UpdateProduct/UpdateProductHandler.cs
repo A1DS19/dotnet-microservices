@@ -27,6 +27,7 @@ internal class UpdateProductCommandHandler(
 
         if (product is null)
         {
+            logger.LogWarning("Product {Id} was not found", command.Id);
             throw new ProductNotFoundException(command.Id.ToString());
         }
 
@@ -37,6 +38,9 @@ internal class UpdateProductCommandHandler(
         product.Price = command.Price;
 
         session.Update(product);
+
+        logger.LogInformation("Product {Id} was updated", command.Id);
+
         await session.SaveChangesAsync(cancellationToken);
 
         return new UpdateProductResult(product.Id);
