@@ -24,7 +24,7 @@ internal class GetProductByQueryIdHandler(
                 "GetProductByIdHandler.Handle found no product with ID {id}",
                 query.Id
             );
-            throw new ProductNotFoundExceptions(query.Id.ToString());
+            throw new ProductNotFoundException(query.Id.ToString());
         }
 
         logger.LogInformation("GetProductByIdHandler.Handle returning product: {product}", product);

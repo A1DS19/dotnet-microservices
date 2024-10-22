@@ -1,7 +1,7 @@
 namespace Catalog.API.Exceptions;
 
-public class ProductNotFoundExceptions : Exception
+public class ProductNotFoundException : Exception
 {
-    public ProductNotFoundExceptions(string identifier = "")
+    public ProductNotFoundException(string identifier = "")
         : base($"Product {identifier} not found") { }
 }
