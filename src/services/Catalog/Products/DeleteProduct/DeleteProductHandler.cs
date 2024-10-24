@@ -12,7 +12,7 @@ public class DeleteProductCommandValidator : AbstractValidator<DeleteProductComm
     }
 }
 
-public class DeleteProductHandler(IDocumentSession session, ILogger<DeleteProductHandler> logger)
+public class DeleteProductHandler(IDocumentSession session)
     : ICommandHandler<DeleteProductCommand, DeleteProductResult>
 {
     public async Task<DeleteProductResult> Handle(
@@ -20,11 +20,7 @@ public class DeleteProductHandler(IDocumentSession session, ILogger<DeleteProduc
         CancellationToken cancellationToken
     )
     {
-        logger.LogInformation("Deleting product with ID {Id}", command.Id);
-
         session.Delete<Product>(command.Id);
-
-        logger.LogInformation("Product with ID {Id} was deleted", command.Id);
 
         await session.SaveChangesAsync(cancellationToken);
 

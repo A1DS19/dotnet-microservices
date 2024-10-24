@@ -40,8 +40,6 @@ internal class UpdateProductCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        logger.LogInformation("Updating product {Id}", command.Id);
-
         var product = session.Load<Product>(command.Id);
 
         if (product is null)
@@ -57,8 +55,6 @@ internal class UpdateProductCommandHandler(
         product.Price = command.Price;
 
         session.Update(product);
-
-        logger.LogInformation("Product {Id} was updated", command.Id);
 
         await session.SaveChangesAsync(cancellationToken);
 

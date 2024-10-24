@@ -14,8 +14,6 @@ internal class GetProductByQueryIdHandler(
         CancellationToken cancellationToken
     )
     {
-        logger.LogInformation("GetProductByIdHandler.Handle called with query: {query}", query);
-
         var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
 
         if (product is null)
@@ -27,7 +25,6 @@ internal class GetProductByQueryIdHandler(
             throw new ProductNotFoundException(query.Id);
         }
 
-        logger.LogInformation("GetProductByIdHandler.Handle returning product: {product}", product);
         return new GetProductByIdResult(product);
     }
 }
