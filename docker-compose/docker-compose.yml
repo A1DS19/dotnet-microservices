@@ -1,8 +1,11 @@
-version: '3.4'
-
 services:
   catalog.db:
     image: postgres:17
+  catalog.api:
+    image: catalog.api
+    build:
+      context: ../
+      dockerfile: src/services/Catalog/Dockerfile
 
 volumes:
   postgres_catalog:

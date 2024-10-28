@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
   catalog.db:
     container_name: catalog.db
@@ -12,3 +10,17 @@ services:
       - "5432:5432"
     volumes:
       - postgres_catalog:/var/lib/postgresql/data
+  catalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTPS_PORT=8081
+      - ASPNETCORE_HTTP_PORT=8080
+      - ConnectionStrings__Database=Host=catalog.db;Port=5432;Database=catalog;Username=postgres;Password=postgres;Include Error Detail=true
+    depends_on:
+      - catalog.db
+    ports:
+      - "6000:8080"
+      - "6060:8081"
+    volumes:
+      - /Users/jose.padilla/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - /Users/jose.padilla/.aspnet/https:/root/.aspnet/https:ro
