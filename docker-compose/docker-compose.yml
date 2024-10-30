@@ -6,6 +6,10 @@ services:
     build:
       context: ../
       dockerfile: src/services/Catalog/Dockerfile
+  
+  basket.db:
+    image: postgres:17
 
 volumes:
   postgres_catalog:
+  postgres_basket:

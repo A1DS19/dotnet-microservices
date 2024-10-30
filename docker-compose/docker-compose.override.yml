@@ -24,3 +24,15 @@ services:
     volumes:
       - /Users/jose.padilla/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - /Users/jose.padilla/.aspnet/https:/root/.aspnet/https:ro
+  
+  basket.db:
+    container_name: basket.db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=basket
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_basket:/var/lib/postgresql/data
