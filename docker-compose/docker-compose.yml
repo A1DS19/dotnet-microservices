@@ -1,4 +1,7 @@
 services:
+  distributedcache:
+    image: redis:7.4.1
+
   catalog.db:
     image: postgres:17
   catalog.api:
@@ -13,3 +16,4 @@ services:
 volumes:
   postgres_catalog:
   postgres_basket:
+  redis_distributedcache:

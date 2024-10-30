@@ -1,4 +1,12 @@
 services:
+  distributedcache:
+    image: redis:7.4.1
+    container_name: distributedcache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_distributedcache:/data
+
   catalog.db:
     container_name: catalog.db
     environment:
