@@ -12,6 +12,11 @@ services:
   
   basket.db:
     image: postgres:17
+  basket.api:
+    image: basket.api
+    build:
+      context: ../
+      dockerfile: src/services/Basket/Dockerfile
 
 volumes:
   postgres_catalog:
