@@ -21,4 +21,4 @@ RUN dotnet publish "Catalog.API.csproj" -c $configuration -o /app/publish /p:Use
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Catalog.API.dll"]
+ENTRYPOINT ["dotnet", "Catalog.API.dll", "--launch-profile", "https"]
