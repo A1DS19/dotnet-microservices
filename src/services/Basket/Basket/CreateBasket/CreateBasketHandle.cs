@@ -13,16 +13,30 @@ public class BasketCommandValidator : AbstractValidator<CreateBasketCommand>
     }
 }
 
-public class CreateBasketHandle(IBasketRepository repository)
-    : ICommandHandler<CreateBasketCommand, CreateBasketResult>
+public class CreateBasketHandle(
+    IBasketRepository repository,
+    DiscountProtoService.DiscountProtoServiceClient discountProto
+) : ICommandHandler<CreateBasketCommand, CreateBasketResult>
 {
     public async Task<CreateBasketResult> Handle(
         CreateBasketCommand command,
         CancellationToken cancellationToken
     )
     {
-        ShoppingCart cart = command.Cart;
-        await repository.CreateBasket(cart, cancellationToken);
-        return new CreateBasketResult(cart.UserName);
+        await DeductDiscount(command.Cart, cancellationToken);
+        await repository.CreateBasket(command.Cart, cancellationToken);
+        return new CreateBasketResult(command.Cart.UserName);
+    }
+
+    private async Task DeductDiscount(ShoppingCart cart, CancellationToken cancellationToken)
+    {
+        foreach (var item in cart.Items)
+        {
+            var coupon = await discountProto.GetDiscountAsync(
+                new GetDiscountRequest { ProductName = item.ProductName },
+                cancellationToken: cancellationToken
+            );
+            item.Price -= coupon.Amount;
+        }
     }
 }
