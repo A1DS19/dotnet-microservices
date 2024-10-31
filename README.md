@@ -1,4 +1,4 @@
 ## Dotnet microservices app
 
 ### Run with
-`dotnet watch --launch-profile "HTTPS" --project ./src/services/Catalog/`
+`cd docker-compose  && docker-compose up`
