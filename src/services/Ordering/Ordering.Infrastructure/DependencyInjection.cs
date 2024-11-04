@@ -10,11 +10,13 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
-        // var connectionString = configuration.GetConnectionString("Database");
-        // services.AddDbContext<OrderContext>(options =>
-        //     options.UseSqlServer(connectionString)
-        // );
-        // services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+        var connectionString = configuration.GetConnectionString("Database");
+
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(connectionString)
+        );
+
+        services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
         return services;
     }

@@ -16,6 +16,8 @@ public class Order : Aggregate<OrderId>
         private set { }
     }
 
+    protected Order() { }
+
     private Order(
         CustomerId customerId,
         OrderName orderName,
