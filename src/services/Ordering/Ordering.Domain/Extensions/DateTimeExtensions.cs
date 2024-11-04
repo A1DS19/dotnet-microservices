@@ -1,4 +1,4 @@
-namespace Ordering.API.Ordering.Domain.Extensions;
+namespace Ordering.Domain.Extensions;
 
 public static class DateTimeExtensions
 {

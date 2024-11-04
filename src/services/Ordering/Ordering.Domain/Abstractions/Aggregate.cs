@@ -1,4 +1,4 @@
-namespace Ordering.API.Ordering.Domain.Abstractions;
+namespace Ordering.Domain.Abstractions;
 
 public abstract class Aggregate<T> : Entity<T>, IAggregate<T>
 {

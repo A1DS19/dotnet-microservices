@@ -1,4 +1,4 @@
-namespace Ordering.API.Ordering.Domain.Exceptions;
+namespace Ordering.Domain.Exceptions;
 
 public class DomainException : Exception
 {

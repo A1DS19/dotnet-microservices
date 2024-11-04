@@ -1,4 +1,4 @@
-namespace Ordering.API.Ordering.Domain.Models;
+namespace Ordering.Domain.Models;
 
 public class Product : Entity<ProductId>
 {
