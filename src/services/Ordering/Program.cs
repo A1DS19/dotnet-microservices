@@ -5,10 +5,9 @@ using Ordering.Infrastructure;
 #region Builder Configuration
 var builder = WebApplication.CreateBuilder(args);
 
-builder
-    .Services.AddApplicationServices()
-    .AddInfrastructureServices(builder.Configuration)
-    .AddAPIServices(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddAPIServices(builder.Configuration);
 
 #endregion
 
