@@ -19,13 +19,15 @@ public class Order : Aggregate<OrderId>
     protected Order() { }
 
     private Order(
+        OrderId orderId,
         CustomerId customerId,
         OrderName orderName,
         Address shippingAddress,
         Address billingAddress,
         Payment payment
     ) =>
-        (CustomerId, OrderName, ShippingAddress, BillingAddress, Payment) = (
+        (Id, CustomerId, OrderName, ShippingAddress, BillingAddress, Payment) = (
+            orderId,
             customerId,
             orderName,
             shippingAddress,
@@ -34,6 +36,7 @@ public class Order : Aggregate<OrderId>
         );
 
     public static Order Create(
+        OrderId orderId,
         CustomerId customerId,
         OrderName orderName,
         Address shippingAddress,
@@ -41,7 +44,14 @@ public class Order : Aggregate<OrderId>
         Payment payment
     )
     {
-        var order = new Order(customerId, orderName, shippingAddress, billingAddress, payment);
+        var order = new Order(
+            orderId,
+            customerId,
+            orderName,
+            shippingAddress,
+            billingAddress,
+            payment
+        );
 
         order.AddDomainEvent(new OrderCreatedEvent(order));
 
