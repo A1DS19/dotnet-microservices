@@ -85,6 +85,18 @@ services:
     volumes:
       - /Users/jose.padilla/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - /Users/jose.padilla/ASP.NET/Https:/app/https:ro
+  
+  order.db:
+    container_name: order.db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password123@!
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    restart: always
+    volumes:
+      - /Users/jose.padilla/Microsoft:/var/opt/mssql
 
 volumes:
   redis_distributedcache:
