@@ -10,13 +10,13 @@ public record Address
 
     protected Address() { }
 
-    private Address(string street, string city, string state, string country, string zipCode)
+    private Address(string Street, string City, string State, string Country, string ZipCode)
     {
-        Street = street;
-        City = city;
-        State = state;
-        Country = country;
-        ZipCode = zipCode;
+        this.Street = Street;
+        this.City = City;
+        this.State = State;
+        this.Country = Country;
+        this.ZipCode = ZipCode;
     }
 
     public static Address Of(
