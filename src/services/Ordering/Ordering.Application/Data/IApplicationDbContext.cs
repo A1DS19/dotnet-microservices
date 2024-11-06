@@ -1,4 +1,6 @@
-namespace Ordering.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace Ordering.Application.Data;
 
 public interface IApplicationDbContext
 {
