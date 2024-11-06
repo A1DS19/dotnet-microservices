@@ -34,8 +34,8 @@ public class CreateOrderHandler(IApplicationDbContext dbContext)
 
         var order = Order.Create(
             Id: OrderId.Of(Guid.NewGuid()),
-            CustomerId: orderDto.CustomerId,
-            OrderName: orderDto.OrderName,
+            CustomerId: CustomerId.Of(orderDto.CustomerId),
+            OrderName: OrderName.Of(orderDto.OrderName),
             ShippingAddress: shippingAddress,
             BillingAddress: billingAddress,
             Payment: Payment.Of(
@@ -48,7 +48,7 @@ public class CreateOrderHandler(IApplicationDbContext dbContext)
 
         foreach (var orderItem in orderDto.OrderItems)
         {
-            order.Add(orderItem.productId, orderItem.quantity, orderItem.price);
+            order.Add(ProductId.Of(orderItem.productId), orderItem.quantity, orderItem.price);
         }
 
         return order;
