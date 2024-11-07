@@ -7,13 +7,13 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
-        // services.AddCarter();
+        services.AddCarter();
         return services;
     }
 
     public static WebApplication UseAPIServices(this WebApplication app)
     {
-        // app.MapCarter();
+        app.MapCarter();
         return app;
     }
 }

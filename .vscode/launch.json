@@ -1,27 +1,53 @@
 {
+  "version": "0.2.0",
   "configurations": [
     {
-      "name": "Docker .NET Launch",
+      "name": "Docker: Debug Catalog API",
       "type": "docker",
       "request": "launch",
-      "preLaunchTask": "docker-run: debug",
+      "preLaunchTask": "docker-compose: debug",
+      "dockerCompose": {
+        "service": "catalogapi",
+        "config": "${workspaceFolder}/docker-compose.debug.yml"
+      },
       "netCore": {
         "appProject": "${workspaceFolder}/src/services/Catalog/Catalog.API.csproj"
       }
     },
     {
-      "name": ".NET Core Launch (web)",
+      "name": "Docker: Debug Basket API",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-compose: debug",
+      "dockerCompose": {
+        "service": "basketapi",
+        "config": "${workspaceFolder}/docker-compose.debug.yml"
+      },
+      "netCore": {
+        "appProject": "${workspaceFolder}/src/services/Basket/Basket.API.csproj"
+      }
+    },
+    {
+      "name": "Docker: Debug Discount gRPC",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-compose: debug",
+      "dockerCompose": {
+        "service": "discountgrpc",
+        "config": "${workspaceFolder}/docker-compose.debug.yml"
+      },
+      "netCore": {
+        "appProject": "${workspaceFolder}/src/services/DiscountGrpc/Discount.gRPC.csproj"
+      }
+    },
+    {
+      "name": ".NET Core Launch Ordering.API",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/services/Catalog/bin/Debug/net8.0/Catalog.API.dll",
+      "program": "${workspaceFolder}/src/services/Ordering/Ordering.API/bin/Debug/net8.0/Ordering.API.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/src/services/Catalog",
-      "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
+      "cwd": "${workspaceFolder}/src/services/Ordering/Ordering.API",
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
