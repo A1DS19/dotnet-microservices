@@ -41,24 +41,31 @@
       }
     },
     {
-      "name": ".NET Core Launch Ordering.API",
-      "type": "coreclr",
+      "name": "Docker: Debug Ordering API",
+      "type": "docker",
       "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/services/Ordering/Ordering.API/bin/Debug/net8.0/Ordering.API.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}/src/services/Ordering/Ordering.API",
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+      "preLaunchTask": "docker-compose: debug",
+      "dockerCompose": {
+        "service": "orderingapi",
+        "config": "${workspaceFolder}/docker-compose.debug.yml"
       },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
+      "netCore": {
+        "appProject": "${workspaceFolder}/src/services/Ordering/Ordering.API/Ordering.API.csproj"
       }
     },
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
       "request": "attach"
+    },
+    {
+      "name": "Docker .NET Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-compose: debug",
+      "netCore": {
+        "appProject": "${workspaceFolder}/src/services/Ordering/Ordering.API/Ordering.API.csproj"
+      }
     }
   ]
 }

@@ -26,6 +26,11 @@ services:
   
   order.db:
     image: mcr.microsoft.com/mssql/server:2022-latest
+  order.api:
+    image: order.api
+    build:
+      context: ../
+      dockerfile: src/services/Ordering/Ordering.API/Dockerfile
 
 volumes:
   postgres_catalog:
