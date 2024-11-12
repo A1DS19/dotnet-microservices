@@ -34,6 +34,12 @@ services:
   
   messagebroker:
     image: rabbitmq:4.0.3-management
+  
+  yarpapigateway:
+    image: yarpapigateway
+    build:
+      context: ../
+      dockerfile: src/ApiGateways/YarpApiGateway/Dockerfile
 
 volumes:
   postgres_catalog:
