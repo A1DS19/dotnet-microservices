@@ -46,6 +46,17 @@
       "internalConsoleOptions": "openOnSessionStart"
     },
     {
+      "name": "Launch Yarp Gateway",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/ApiGateways/YarpApiGateway/bin/Debug/net8.0/YarpApiGateway.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/ApiGateways/YarpApiGateway",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
       "name": ".NET Core Attach",
       "type": "coreclr",
       "request": "attach"
