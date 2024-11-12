@@ -2,70 +2,53 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Docker: Debug Catalog API",
-      "type": "docker",
+      "name": "Launch Catalog API",
+      "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "docker-compose: debug",
-      "dockerCompose": {
-        "service": "catalogapi",
-        "config": "${workspaceFolder}/docker-compose.debug.yml"
-      },
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/services/Catalog/Catalog.API.csproj"
-      }
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/services/Catalog/bin/Debug/net8.0/Catalog.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/services/Catalog",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "Docker: Debug Basket API",
-      "type": "docker",
+      "name": "Launch Basket API",
+      "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "docker-compose: debug",
-      "dockerCompose": {
-        "service": "basketapi",
-        "config": "${workspaceFolder}/docker-compose.debug.yml"
-      },
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/services/Basket/Basket.API.csproj"
-      }
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/services/Basket/bin/Debug/net8.0/Basket.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/services/Basket",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "Docker: Debug Discount gRPC",
-      "type": "docker",
+      "name": "Launch Discount gRPC",
+      "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "docker-compose: debug",
-      "dockerCompose": {
-        "service": "discountgrpc",
-        "config": "${workspaceFolder}/docker-compose.debug.yml"
-      },
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/services/DiscountGrpc/Discount.gRPC.csproj"
-      }
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/services/DiscountGrpc/bin/Debug/net8.0/Discount.gRPC.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/services/DiscountGrpc",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "Docker: Debug Ordering API",
-      "type": "docker",
+      "name": "Launch Ordering API",
+      "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "docker-compose: debug",
-      "dockerCompose": {
-        "service": "orderingapi",
-        "config": "${workspaceFolder}/docker-compose.debug.yml"
-      },
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/services/Ordering/Ordering.API/Ordering.API.csproj"
-      }
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/services/Ordering/Ordering.API/bin/Debug/net8.0/Ordering.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/services/Ordering/Ordering.API",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
       "request": "attach"
-    },
-    {
-      "name": "Docker .NET Launch",
-      "type": "docker",
-      "request": "launch",
-      "preLaunchTask": "docker-compose: debug",
-      "netCore": {
-        "appProject": "${workspaceFolder}/src/services/Ordering/Ordering.API/Ordering.API.csproj"
-      }
     }
   ]
 }
