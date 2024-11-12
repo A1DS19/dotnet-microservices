@@ -38,4 +38,47 @@ public static class OrderExtensions
                 .ToList()
         ));
     }
+
+    public static OrderDto ToOrderDto(this Order order)
+    {
+        return DtoFromOrder(order);
+    }
+
+    private static OrderDto DtoFromOrder(Order order)
+    {
+        return new OrderDto(
+            Id: order.Id.Value,
+            CustomerId: order.CustomerId.Value,
+            OrderName: order.OrderName.Value,
+            ShippingAddress: new AddressDto(
+                order.ShippingAddress.Street,
+                order.ShippingAddress.City,
+                order.ShippingAddress.State,
+                order.ShippingAddress.Country,
+                order.ShippingAddress.ZipCode
+            ),
+            BillingAddress: new AddressDto(
+                order.BillingAddress.Street,
+                order.BillingAddress.City,
+                order.BillingAddress.State,
+                order.BillingAddress.Country,
+                order.BillingAddress.ZipCode
+            ),
+            Payment: new PaymentDto(
+                order.Payment.CardNumber,
+                order.Payment.CardHolderName,
+                order.Payment.Expiration,
+                order.Payment.SecurityNumber
+            ),
+            OrderStatus: order.OrderStatus,
+            OrderItems: order
+                .OrderItems.Select(oi => new OrderItemDto(
+                    oi.OrderId.Value,
+                    oi.ProductId.Value,
+                    oi.Quantity,
+                    oi.Price
+                ))
+                .ToList()
+        );
+    }
 }
