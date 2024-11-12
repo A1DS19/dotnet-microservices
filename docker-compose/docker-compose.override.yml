@@ -4,8 +4,6 @@ services:
     container_name: distributedcache
     ports:
       - "6379:6379"
-    volumes:
-      - redis_distributedcache:/data
 
   catalog.db:
     container_name: catalog.db
@@ -60,9 +58,14 @@ services:
       - GrpcSettings__DiscountUrl=https://discount.grpc:8081
       - ConnectionStrings__Database=Host=basket.db;Port=5432;Database=basket;Username=postgres;Password=postgres;Include Error Detail=true
       - ConnectionStrings__Redis=distributedcache:6379
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
     depends_on:
       - basket.db
       - distributedcache
+      - messagebroker
+      - discount.grpc
     ports:
       - "6001:8080"
       - "6061:8081"
@@ -107,16 +110,27 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/https/aspnetapp.pfx
       - ASPNETCORE_URLS=https://+:${ASPNETCORE_HTTPS_PORT:-8081};http://+:${ASPNETCORE_HTTP_PORT:-8080}
       - ConnectionStrings__Database=Server=order.db;Database=order;User Id=sa;Password=Password123@!;Encrypt=False;TrustServerCertificate=True
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__Username=guest
+      - MessageBroker__Password=guest
+      - FeatureManagement__OrderFulfillment=false
     depends_on:
       - order.db
+      - messagebroker
     ports:
       - "6003:8080"
       - "6063:8081"
     volumes:
       - /Users/jose.padilla/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - /Users/jose.padilla/ASP.NET/Https:/app/https:ro
-
-volumes:
-  redis_distributedcache:
-  postgres_catalog:
-  postgres_basket:
+  
+  messagebroker:
+    container_name: messagebroker
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"

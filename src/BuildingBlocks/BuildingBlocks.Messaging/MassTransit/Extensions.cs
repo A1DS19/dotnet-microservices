@@ -17,7 +17,7 @@ public static class Extensions
         {
             x.SetKebabCaseEndpointNameFormatter();
 
-            if (assembly is not null)
+            if (assembly != null)
             {
                 x.AddConsumers(assembly);
             }
@@ -26,7 +26,7 @@ public static class Extensions
                 (context, cfg) =>
                 {
                     cfg.Host(
-                        new Uri(configuration["MessageBroker:HostName"]!),
+                        new Uri(configuration["MessageBroker:Host"]!),
                         host =>
                         {
                             host.Username(configuration["MessageBroker:UserName"]!);

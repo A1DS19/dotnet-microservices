@@ -3,7 +3,7 @@ using Ordering.Application.Orders.Commands.CreateOrder;
 
 namespace Ordering.Application.EventHandlers.Integration;
 
-public class BasketCheckoutEventHandler(ISender sender, ILogger logger)
+public class BasketCheckoutEventHandler(ISender sender, ILogger<BasketCheckoutEventHandler> logger)
     : IConsumer<BasketCheckoutEvent>
 {
     public async Task Consume(ConsumeContext<BasketCheckoutEvent> context)

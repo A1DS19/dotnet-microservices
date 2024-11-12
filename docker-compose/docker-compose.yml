@@ -31,8 +31,10 @@ services:
     build:
       context: ../
       dockerfile: src/services/Ordering/Ordering.API/Dockerfile
+  
+  messagebroker:
+    image: rabbitmq:4.0.3-management
 
 volumes:
   postgres_catalog:
   postgres_basket:
-  redis_distributedcache:
